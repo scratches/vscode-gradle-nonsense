@@ -1,12 +1,13 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.4'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.springframework.boot' version '3.0.6'
+    id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
+    id 'eclipse'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -35,5 +36,12 @@ task metaProperties() {
         def props = new Properties()
         props.setProperty("version", "${project.version}")
         props.store(output.newOutputStream(), null)
+    }
+}
+
+eclipse {
+    synchronizationTasks processResources
+    classpath {
+        defaultOutputDir = file('build/resources/main')
     }
 }
